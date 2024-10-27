@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.1-apache as php
 
 # install package
 RUN apt-get update \
@@ -6,8 +6,6 @@ RUN apt-get update \
 
 RUN docker-php-ext-install pdo_mysql mysqli
 
-# install composer
-RUN curl -s http://getcomposer.org/installer | php && \
-    mv composer.phar /usr/local/bin/composer
+COPY --from=composer:2.8 /usr/bin/composer /usr/bin/composer
 
 COPY 000-default.conf /etc/apache2/sites-enabled/
