@@ -1,0 +1,22 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - docker compose build
+      - docker compose up -d
+  up:
+    cmds:
+      - docker compose up -d
+  down:
+    cmds:
+      - docker compose down
+  web/bash:
+    cmds:
+      - docker exec -it web bash
+  composer:
+    cmds:
+      - docker exec --target=composer -it web composer {{.CMD}}
+  mysql/bash:
+    cmds:
+      - docker exec -it web 
