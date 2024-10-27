@@ -16,7 +16,7 @@ tasks:
       - docker exec -it web bash
   composer:
     cmds:
-      - docker exec --target=composer -it web composer {{.CMD}}
+      - docker exec -it web composer {{.CMD}}
   mysql/bash:
     cmds:
       - docker exec -it web 
